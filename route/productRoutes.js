@@ -4,11 +4,15 @@ const productController = require("../controller/productController");
 const upload = require("../middlewares/multer");
 
 // Create Product
-router.post('/', upload.single('image'), upload.single("imageOne"), 
-upload.single("imageTwo"),
-upload.single("imageThree"),
-upload.single("imageFour"),
-productController.createProduct)
+router.post('/', 
+  upload.fields([
+    { name: 'image', maxCount: 1 },
+    { name: 'imageOne', maxCount: 1 },
+    { name: 'imageTwo', maxCount: 1 },
+    { name: 'imageThree', maxCount: 1 },
+    { name: 'imageFour', maxCount: 1 },
+  ]),
+   productController.createProduct)
 
 // Get All Products
 router.get("/", productController.getProducts);
