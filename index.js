@@ -1,9 +1,13 @@
-import express from 'express'
-import colors from 'colors'
-import morgan from 'morgan'
-import cors from 'cors'
-import dotenv from "dotenv"
-import ConnectDB from './config/db.js'
+const express = require ('express')
+const colors = require ('colors')
+const morgan = require ('morgan')
+const cors = require ('cors')
+const dotenv = require ("dotenv")
+const ConnectDB = require ('./config/db.js')
+const router = require('./route/userRoute.js')
+const category = require('./route/categoryRoute.js')
+const Product = require('./route/productRoutes.js')
+
 
 
 // rest object 
@@ -26,6 +30,10 @@ app.get("/", (req, res) =>{
 const PORT = process.env.PORT || 8080 
 dotenv.config();
 
+
+app.use("/api/auth", router)
+app.use("/api/category", category)
+app.use("/api/product", Product)
 ConnectDB()
 //listen 
 app.listen(PORT , () =>{
