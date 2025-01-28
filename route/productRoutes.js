@@ -11,8 +11,9 @@ router.post('/',
     { name: 'imageTwo', maxCount: 1 },
     { name: 'imageThree', maxCount: 1 },
     { name: 'imageFour', maxCount: 1 },
-  ]),
-   productController.createProduct)
+  ]), 
+  productController.createProduct
+);
 
 // Get All Products
 router.get("/", productController.getProducts);
@@ -22,13 +23,15 @@ router.get("/:id", productController.getProductById);
 
 // Update Product
 router.put("/:id", upload.fields([
+  { name: 'image', maxCount: 1 },
   { name: 'imageOne', maxCount: 1 },
   { name: 'imageTwo', maxCount: 1 },
   { name: 'imageThree', maxCount: 1 },
-  { name: 'imageFour', maxCount: 1 }
+  { name: 'imageFour', maxCount: 1 },
 ]), productController.updateProduct);
 
 // Delete Product
 router.delete("/:id", productController.deleteProduct);
+router.get("/search/:keyword", productController.SearchKeyword)
 
 module.exports = router;

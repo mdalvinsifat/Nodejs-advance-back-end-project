@@ -1,6 +1,6 @@
-const Category = require('../model/categoryModel'); // Adjust the path to your model
+const Category = require('../model/categoryModel');
 
-// Controller to handle category operations
+
 const categoryController = async (req, res) => {
         try {
             const { name, description } = req.body;
